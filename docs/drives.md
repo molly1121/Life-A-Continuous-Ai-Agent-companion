@@ -1,6 +1,6 @@
 # Drives
 
-> Runnable reference: [`reference/drives/`](../reference/drives/) — `node --experimental-sqlite probe.js`
+> Runnable reference: [`src/drives/`](../src/drives/) — `node --experimental-sqlite probe.js`
 
 Memory answers *where I came from*; sleep answers *how I stay alive*. Drives answers the remaining question: **what makes this agent do something at this particular moment?** Without it, every self-initiated act traces back to a timer or a rule — triggered, not wanted.
 

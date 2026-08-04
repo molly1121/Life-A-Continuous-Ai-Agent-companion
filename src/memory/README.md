@@ -1,4 +1,4 @@
-# reference/memory
+# src/memory
 
 A runnable reference implementation of the memory subsystem.
 Node ≥ 22 (uses `node:sqlite`), no dependencies.

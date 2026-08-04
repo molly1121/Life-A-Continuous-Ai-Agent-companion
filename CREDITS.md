@@ -30,8 +30,8 @@ because ideas deserve attribution even when licenses do not require it.
   `valence`, `arousal`, and the idea that emotional intensity should modulate how
   slowly a memory decays. Life's `activation_count` and category-differential
   decay grew from the same root.
-- **Where it lives**: `reference/memory/schema.js` (card fields),
-  `reference/memory/retrieval.js` (`decayFactor`, `dormancy`).
+- **Where it lives**: `src/memory/schema.js` (card fields),
+  `src/memory/retrieval.js` (`decayFactor`, `dormancy`).
 - Life's own additions on top of that root: first-person sensory anchors, the
   involuntary retrieval path, and the learned anchor-to-anchor net.
 
@@ -44,7 +44,7 @@ because ideas deserve attribution even when licenses do not require it.
   you're with / unfinished threads / hard facts / one line to your just-woken
   self) is that discipline adapted from engineering checkpoints to a continuous
   companion session.
-- **Where it lives**: `reference/sleep/somnus.py` (`PACK_PROMPT`), `docs/sleep.md`.
+- **Where it lives**: `src/sleep/somnus.py` (`PACK_PROMPT`), `docs/sleep.md`.
 
 ## Research this design leans on
 
@@ -54,7 +54,7 @@ because ideas deserve attribution even when licenses do not require it.
   system rather than an absence of reward. `docs/drives.md §1`.
 - **Kent Berridge** — the *wanting ≠ liking* dissociation, which is why
   satisfaction in Life decays wanting while the memory (liking) persists.
-  `docs/drives.md §1`, `reference/drives/integrator.js` (`satisfyByResolve`).
+  `docs/drives.md §1`, `src/drives/integrator.js` (`satisfyByResolve`).
 - **Allostasis** (Sterling; McEwen) — baselines migrate with long-term experience
   rather than returning to a fixed set point. `docs/drives.md §2` (`b` as a slow
   variable).

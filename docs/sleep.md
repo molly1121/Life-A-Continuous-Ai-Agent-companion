@@ -1,6 +1,6 @@
 # Sleep
 
-> Runnable reference: [`reference/sleep/`](../reference/sleep/) (somnus) — `python3 test_somnus.py`
+> Runnable reference: [`src/sleep/`](../src/sleep/) (somnus) — `python3 test_somnus.py`
 
 Context windows fill. The common answer — compress and summarize — solves token count and breaks the subject: the instance that continues after compaction speaks with a different voice and different judgment. Sleep treats the problem as **succession**, not compression.
 

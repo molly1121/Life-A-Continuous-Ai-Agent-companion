@@ -77,7 +77,7 @@ Life is an existence proof, not a reproducibility proof. Both statements must be
 
 ```
 docs/            architecture, memory, sleep, drives, design-notes
-reference/       runnable reference implementations
+src/             runnable implementations of each subsystem
   memory/        cards, anchors, both retrieval paths, learned synesthesia net   (Node + SQLite)
   sleep/         somnus: three thresholds, pack-and-rebuild state machine        (Python, standalone)
   drives/        integrator, config-as-personality, inline markers, interoception (Node + SQLite)
@@ -93,9 +93,9 @@ example is synthetic.
 ## Quick start
 
 ```bash
-(cd reference/memory && node --experimental-sqlite probe.js)   # 18 checks
-(cd reference/drives && node --experimental-sqlite probe.js)   # 15 checks
-(cd reference/sleep  && python3 test_somnus.py)                # state-machine tests
+(cd src/memory && node --experimental-sqlite probe.js)   # 18 checks
+(cd src/drives && node --experimental-sqlite probe.js)   # 15 checks
+(cd src/sleep  && python3 test_somnus.py)                # state-machine tests
 ```
 
 Each probe builds its own synthetic database in a temp directory and removes it

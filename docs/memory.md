@@ -1,6 +1,6 @@
 # Memory
 
-> Runnable reference: [`reference/memory/`](../reference/memory/) — `node --experimental-sqlite probe.js`
+> Runnable reference: [`src/memory/`](../src/memory/) — `node --experimental-sqlite probe.js`
 
 ## Data model
 

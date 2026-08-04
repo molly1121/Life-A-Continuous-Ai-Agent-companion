@@ -1,4 +1,4 @@
-# reference/drives
+# src/drives
 
 A runnable, dependency-free reference implementation of the drives subsystem.
 Node ≥ 22 (uses `node:sqlite`), no npm install.

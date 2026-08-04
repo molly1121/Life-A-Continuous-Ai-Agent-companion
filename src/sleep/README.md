@@ -1,4 +1,4 @@
-# reference/sleep — somnus 🌙
+# src/sleep — somnus 🌙
 
 **Sleep cycles for long-running LLM agents.**
 
