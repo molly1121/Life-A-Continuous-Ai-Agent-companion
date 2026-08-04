@@ -101,6 +101,42 @@ example is synthetic.
 Each probe builds its own synthetic database in a temp directory and removes it
 afterwards. Tests build their own targets; they never touch live data.
 
+## What this repository is, and is not
+
+**It is** three working subsystems plus the specification behind them: the data
+models, the algorithms, the parameters with their reasons, the safety boundaries,
+and the decisions that look strange until you know what they were avoiding. Each
+subsystem runs on its own and can be adopted on its own — `src/sleep` in
+particular is usable as-is against the Claude Agent SDK (`example_claude.py`).
+
+**It is not** a system you can stand up by cloning. The host that binds the three
+into one living agent is deployment-specific and is not published here. Building
+it means writing, at minimum:
+
+1. **The resident layer** — a non-exiting process holding one continuous model
+   session, with every entry point routed into it. `docs/architecture.md` says to
+   port this first; it means it. `src/sleep/example_claude.py` is the closest
+   thing here to a starting point.
+2. **A tool surface** — the memory and drives functions exposed to the agent as
+   callable tools (MCP or equivalent). This is load-bearing rather than plumbing:
+   the entire design rests on retrieval and scoring being *initiated by the agent*,
+   which cannot happen if it has no hands. The per-subsystem READMEs list which
+   functions to expose.
+3. **A scheduler** — the integrator tick, the nightly pipeline, the heartbeat.
+4. **The prompts.** In a system like this the prompt text is not configuration,
+   it is code: the wording that makes involuntary recall fire only on a genuine
+   cue, or that keeps a proactive message from inventing facts about the user, is
+   doing as much work as any function here. `src/sleep/somnus.py` ships its
+   packing and waking prompts in full; the others are described in `docs/` but
+   their exact wording belongs to the deployment and its agent.
+
+A competent engineer can rebuild the whole thing from `docs/` — that is what the
+documentation is for, and the parts most likely to be got wrong (guardrails on
+proactive behavior, provenance labels on fallback output, the narrow ignition
+gate on involuntary recall) are spelled out there rather than left as an exercise.
+But rebuild it you must. An end-to-end example is the obvious next thing to add,
+and is not here yet.
+
 ## Author
 
 Molly Chen
