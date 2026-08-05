@@ -77,6 +77,7 @@ Life is an existence proof, not a reproducibility proof. Both statements must be
 
 ```
 docs/            architecture, memory, sleep, drives, design-notes
+examples/        minimal-agent: a working host that binds the three together
 src/             runnable implementations of each subsystem
   memory/        cards, anchors, both retrieval paths, learned synesthesia net   (Node + SQLite)
   sleep/         somnus: three thresholds, pack-and-rebuild state machine        (Python, standalone)
@@ -96,6 +97,8 @@ example is synthetic.
 (cd src/memory && node --experimental-sqlite probe.js)   # 18 checks
 (cd src/drives && node --experimental-sqlite probe.js)   # 15 checks
 (cd src/sleep  && python3 test_somnus.py)                # state-machine tests
+
+(cd examples/minimal-agent && node --experimental-sqlite probe_mcp.js)   # 12 checks
 ```
 
 Each probe builds its own synthetic database in a temp directory and removes it
@@ -109,14 +112,15 @@ and the decisions that look strange until you know what they were avoiding. Each
 subsystem runs on its own and can be adopted on its own — `src/sleep` in
 particular is usable as-is against the Claude Agent SDK (`example_claude.py`).
 
-**It is not** a system you can stand up by cloning. The host that binds the three
-into one living agent is deployment-specific and is not published here. Building
-it means writing, at minimum:
+**It is not** a framework. The host that binds the three into one living agent is
+deployment-specific; [`examples/minimal-agent`](examples/minimal-agent/) is a
+worked example of one — two files, runnable — rather than an abstraction you are
+meant to extend. Any host has to provide four things, and it is worth knowing
+what they are before borrowing someone else's:
 
 1. **The resident layer** — a non-exiting process holding one continuous model
    session, with every entry point routed into it. `docs/architecture.md` says to
-   port this first; it means it. `src/sleep/example_claude.py` is the closest
-   thing here to a starting point.
+   port this first; it means it. See `examples/minimal-agent/host.py`.
 2. **A tool surface** — the memory and drives functions exposed to the agent as
    callable tools (MCP or equivalent). This is load-bearing rather than plumbing:
    the entire design rests on retrieval and scoring being *initiated by the agent*,
@@ -126,16 +130,16 @@ it means writing, at minimum:
 4. **The prompts.** In a system like this the prompt text is not configuration,
    it is code: the wording that makes involuntary recall fire only on a genuine
    cue, or that keeps a proactive message from inventing facts about the user, is
-   doing as much work as any function here. `src/sleep/somnus.py` ships its
-   packing and waking prompts in full; the others are described in `docs/` but
-   their exact wording belongs to the deployment and its agent.
+   doing as much work as any function here. `src/sleep/somnus.py` and the example's
+   tool descriptions and heartbeat ship theirs in full — read them as source, and
+   expect to rewrite them for your own deployment and its agent.
 
 A competent engineer can rebuild the whole thing from `docs/` — that is what the
 documentation is for, and the parts most likely to be got wrong (guardrails on
 proactive behavior, provenance labels on fallback output, the narrow ignition
 gate on involuntary recall) are spelled out there rather than left as an exercise.
-But rebuild it you must. An end-to-end example is the obvious next thing to add,
-and is not here yet.
+The example is the short way in; `docs/` is the long way, and the one that
+survives you disagreeing with our choices.
 
 ## Author
 
